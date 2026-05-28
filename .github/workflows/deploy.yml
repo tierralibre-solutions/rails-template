@@ -30,15 +30,15 @@ jobs:
         uses: docker/login-action@v4
         with:
           registry: ghcr.io
-          username: tierralibre-solutions
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push image
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
-          tags: ghcr.io/tierralibre-solutions/${{ vars.APP_NAME }}:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/${{ vars.APP_NAME }}:${{ github.sha }}
 
       - name: Notify Dispatch (success)
         env:
