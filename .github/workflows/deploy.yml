@@ -27,7 +27,7 @@ jobs:
         run: echo -n "${{ secrets.RAILS_MASTER_KEY }}" > config/master.key
 
       - name: Log in to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: tierralibre-solutions
