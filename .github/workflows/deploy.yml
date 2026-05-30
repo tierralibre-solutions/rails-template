@@ -20,6 +20,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Notify Dispatch (started)
+        continue-on-error: true
+        env:
+          DEPLOYMENT_ID: ${{ inputs.deployment_id }}
+          RUN_ID:        ${{ github.run_id }}
+          SECRET:        ${{ secrets.DISPATCH_WEBHOOK_SECRET }}
+        run: |
+          body=$(jq -nc \
+            --arg deployment_id "$DEPLOYMENT_ID" \
+            --arg github_run_id "$RUN_ID" \
+            --arg status        started \
+            '{deployment_id: $deployment_id, github_run_id: $github_run_id, status: $status}')
+          sig=$(printf '%s' "$body" | openssl dgst -sha256 -hmac "$SECRET" | awk '{print $2}')
+          curl --fail-with-body \
+               -X POST https://dispatch.freeland.tools/webhooks/deployments \
+               -H "Content-Type: application/json" \
+               -H "X-Dispatch-Signature: sha256=$sig" \
+               --data "$body"
+
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -44,13 +63,15 @@ jobs:
         env:
           DEPLOYMENT_ID: ${{ inputs.deployment_id }}
           COMMIT_SHA:    ${{ github.sha }}
+          RUN_ID:        ${{ github.run_id }}
           SECRET:        ${{ secrets.DISPATCH_WEBHOOK_SECRET }}
         run: |
           body=$(jq -nc \
             --arg deployment_id "$DEPLOYMENT_ID" \
             --arg commit_sha    "$COMMIT_SHA" \
+            --arg github_run_id "$RUN_ID" \
             --arg status        success \
-            '{deployment_id: $deployment_id, commit_sha: $commit_sha, status: $status}')
+            '{deployment_id: $deployment_id, commit_sha: $commit_sha, github_run_id: $github_run_id, status: $status}')
           sig=$(printf '%s' "$body" | openssl dgst -sha256 -hmac "$SECRET" | awk '{print $2}')
           curl --fail-with-body \
                -X POST https://dispatch.freeland.tools/webhooks/deployments \
