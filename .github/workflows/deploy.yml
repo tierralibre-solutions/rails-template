@@ -21,6 +21,7 @@ jobs:
 
     steps:
       - name: Notify Dispatch (started)
+        continue-on-error: true
         env:
           DEPLOYMENT_ID: ${{ inputs.deployment_id }}
           RUN_ID:        ${{ github.run_id }}
