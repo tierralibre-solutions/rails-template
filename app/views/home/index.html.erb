@@ -1,0 +1,58 @@
+<% content_for :title, app_name %>
+
+<div class="onboarding-page">
+  <header class="onboarding-header">
+    <h1 class="onboarding-title anim" style="--step: 0">
+      <%= app_name %> is live.
+    </h1>
+    <p class="onboarding-sub anim" style="--step: 1">Here's what to do next.</p>
+  </header>
+
+  <ol class="steps">
+    <li class="step anim" style="--step: 2">
+      <span class="step-number">1</span>
+      <div class="step-body">
+        <h2 class="step-title">Pull down your repo</h2>
+        <p class="step-desc">Clone it locally so you can start making changes.</p>
+        <% if github_repo_url.present? %>
+          <pre class="step-code">git clone <%= github_repo_url %></pre>
+        <% end %>
+      </div>
+    </li>
+
+    <li class="step anim" style="--step: 3">
+      <span class="step-number">2</span>
+      <div class="step-body">
+        <h2 class="step-title">Open Claude Code</h2>
+        <p class="step-desc">Inside your project directory, launch Claude Code.</p>
+        <pre class="step-code">claude</pre>
+      </div>
+    </li>
+
+    <li class="step anim" style="--step: 4">
+      <span class="step-number">3</span>
+      <div class="step-body">
+        <h2 class="step-title">Tell it what you want to build</h2>
+        <p class="step-desc">Describe your idea. Claude Code will help you build it.</p>
+        <pre class="step-code">> I want to build a...</pre>
+      </div>
+    </li>
+
+    <li class="step anim" style="--step: 5">
+      <span class="step-number">4</span>
+      <div class="step-body">
+        <h2 class="step-title">Push to main and watch it ship</h2>
+        <p class="step-desc">Every push to main deploys your changes live in minutes.</p>
+        <pre class="step-code">git push origin main</pre>
+      </div>
+    </li>
+  </ol>
+
+  <footer class="onboarding-footer anim" style="--step: 6">
+    <p>
+      Want superpowers?
+      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank" rel="noopener" class="footer-link">Compound Engineering</a>
+      is a Claude Code plugin with expert review agents, smart commit flows, and more.
+    </p>
+  </footer>
+</div>
