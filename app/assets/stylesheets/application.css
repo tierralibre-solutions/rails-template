@@ -1,10 +1,164 @@
 /*
  * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
  */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 0.06s);
+}
+
+.anim {
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--step) * 0.12s);
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+
+.onboarding-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem 4rem;
+  gap: 3.5rem;
+  background: #0a0a0a;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.onboarding-header {
+  text-align: center;
+}
+
+.onboarding-title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #f8fafc;
+}
+
+.onboarding-sub {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* ── Steps ──────────────────────────────────────────────────── */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.15rem;
+}
+
+.step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+}
+
+.step-desc {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.step-code {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  color: #7dd3fc;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+.onboarding-footer {
+  max-width: 600px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.onboarding-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.footer-link {
+  color: #94a3b8;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(148, 163, 184, 0.35);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #f1f5f9;
+  text-decoration-color: rgba(241, 245, 249, 0.5);
+}
