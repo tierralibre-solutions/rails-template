@@ -12,47 +12,38 @@
     <li class="step anim" style="--step: 2">
       <span class="step-number">1</span>
       <div class="step-body">
-        <h2 class="step-title">Pull down your repo</h2>
-        <p class="step-desc">Clone it locally so you can start making changes.</p>
-        <% if github_repo_url.present? %>
-          <pre class="step-code">git clone <%= github_repo_url %></pre>
-        <% end %>
+        <h2 class="step-title">Open the Work tab</h2>
+        <p class="step-desc">It's built into your Dispatch dashboard — no local setup needed.</p>
       </div>
     </li>
 
     <li class="step anim" style="--step: 3">
       <span class="step-number">2</span>
       <div class="step-body">
-        <h2 class="step-title">Open Claude Code</h2>
-        <p class="step-desc">Inside your project directory, launch Claude Code.</p>
-        <pre class="step-code">claude</pre>
+        <h2 class="step-title">Add a to-do</h2>
+        <p class="step-desc">Describe what you want to build or fix.</p>
+        <pre class="step-code">What do you want to build?</pre>
       </div>
     </li>
 
     <li class="step anim" style="--step: 4">
       <span class="step-number">3</span>
       <div class="step-body">
-        <h2 class="step-title">Tell it what you want to build</h2>
-        <p class="step-desc">Describe your idea. Claude Code will help you build it.</p>
-        <pre class="step-code">> I want to build a...</pre>
+        <h2 class="step-title">Start an Agent Session</h2>
+        <p class="step-desc">Claude works directly in your repo and commits the changes.</p>
       </div>
     </li>
 
     <li class="step anim" style="--step: 5">
       <span class="step-number">4</span>
       <div class="step-body">
-        <h2 class="step-title">Push to main and watch it ship</h2>
-        <p class="step-desc">Every push to main deploys your changes live in minutes.</p>
-        <pre class="step-code">git push origin main</pre>
+        <h2 class="step-title">Watch it ship</h2>
+        <p class="step-desc">Every change auto-deploys to your live URL in minutes.</p>
       </div>
     </li>
   </ol>
 
   <footer class="onboarding-footer anim" style="--step: 6">
-    <p>
-      Want superpowers?
-      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank" rel="noopener" class="footer-link">Compound Engineering</a>
-      is a Claude Code plugin with expert review agents, smart commit flows, and more.
-    </p>
+    <p>Powered by <a href="https://dispatch.freeland.tools" target="_blank" rel="noopener" class="footer-link">Dispatch</a> — spin up, build, and ship Rails apps without leaving your browser.</p>
   </footer>
 </div>
