@@ -40,7 +40,7 @@ jobs:
                --data "$body"
 
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Write Rails master key
         run: echo -n "${{ secrets.RAILS_MASTER_KEY }}" > config/master.key
