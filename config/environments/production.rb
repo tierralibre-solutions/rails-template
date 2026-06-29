@@ -66,4 +66,10 @@ Rails.application.configure do
   # Allow kamal-proxy health checks, which hit /up directly on the container
   # using the Docker hostname rather than the public hostname.
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Send email via Resend's HTTPS API. Required env: RESEND_API_KEY, APP_HOST
+  # (hostname only, no scheme), MAIL_FROM (sender on a domain verified in Resend).
+  config.action_mailer.delivery_method = :resend
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST", "localhost"), protocol: "https" }
 end
