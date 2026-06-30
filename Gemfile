@@ -34,6 +34,11 @@ gem "bootsnap", require: false
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
+# Transactional email via Resend's HTTPS API (https://resend.com).
+# Chosen over SMTP because port 443 is universally open; ports 465/587 are
+# blocked on many container hosts and corporate networks.
+gem "resend"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -51,4 +56,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Preview outgoing mail in the browser instead of sending it.
+  gem "letter_opener"
 end
